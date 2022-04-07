@@ -15,7 +15,7 @@ class VirtuoozaHome extends StatefulWidget {
 
 class VirtuoozaHomeState extends State<VirtuoozaHome> {
   // Base URL for our wordpress API
-  final String apiUrl = "http://labancaria2.obliviondev.com.ar/wp-json/wp/v2/";
+  final String apiUrl = "https://labancaria.obliviondev.com.ar/wp-json/wp/v2/";
   // Empty list for our posts
   late List posts;
 
@@ -51,12 +51,11 @@ class VirtuoozaHomeState extends State<VirtuoozaHome> {
                 child: Column(
                   children: <Widget>[
                     new FadeInImage.memoryNetwork(
-                      placeholder: kTransparentImage,
-                      image: posts[index]["featured_media"] == 0
-                          ? ''
-                          : posts[index]["_embedded"]["wp:featuredmedia"][0]
-                              ["source_url"],
-                    ),
+                        placeholder: kTransparentImage,
+                        image: posts[index]["featured_media"] != 0
+                            ? posts[index]["_embedded"]["wp:featuredmedia"][0]
+                                ["source_url"]
+                            : "https://labancaria.obliviondev.com.ar/wp-content/uploads/2022/02/GRIS-SUAVE.png"),
                     new Padding(
                       padding: EdgeInsets.all(10.0),
                       child: new ListTile(
